@@ -1,0 +1,46 @@
+﻿@model chensFyp.Models.Survey
+
+@{
+    ViewBag.Title = "Edit Survey";
+}
+
+@section scripts
+{  
+
+ @*<script src="~/Scripts/vm.survey.js"></script>
+    <script src="~/Scripts/vm.department.js"></script>
+    <script src="~/Scripts/vm.question.js"></script>
+    <script src="~/Scripts/vm.surveylist.js"></script>
+    <script src="~/Scripts/vm.responselist.js"></script>*@
+
+
+    @Scripts.Render("~/bundles/cleditor")
+
+    @*<script src="~/Scripts/jquery.cleditor.js"></script>
+     <script src="~/Scripts/knockout.cleditor.js"></script>*@
+    @Scripts.Render("~/bundles/models")
+ 
+
+    <script>
+        $(function() {
+            ko.validation.init({ insertMessages: false });
+            ko.applyBindings(new SurveyModel(@Html.Raw(Model.ToJson())));
+
+            $('#survey-form').submit(function() {
+                var $form = $(this),
+                    url = $form.attr('action'),
+                    params = $form.serialize();
+
+                var result = $.post(url, params);
+
+                result.error(function() {
+                    toastr.error('An error occurred while attempting to save this survey.');
+                });
+
+                return false;
+            });
+        });
+    </script>
+}
+
+@Html.EditorForModel(new { title = "Edit Survey", url = Url.Action("Edit", new { id = Model.Id }) })

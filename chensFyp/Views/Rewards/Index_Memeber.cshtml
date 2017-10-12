@@ -1,0 +1,54 @@
+﻿
+@model IEnumerable<chensFyp.Models.Reward>
+
+
+
+@{
+    ViewBag.Title = "Index_Member";
+}
+
+<h2>Reward List</h2>
+<h2></h2>
+
+<text>Hello,@ViewBag.user</text>
+<text>Your current point is @ViewBag.point</text>
+
+@*@if (Session["LoggedUserName"] != null)
+{
+    <text>
+        Welcome @Session["LoggedUserName"].ToString()  
+
+        Your currrent Point is @Session["LoggedUserPoint"].ToString() 
+        
+    </text>
+
+}*@
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.RewardName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.point)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.RewardName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.point)
+        </td>
+        <td>
+            @Html.ActionLink("Redeem", "Redeem", new { id=item.RewardId }) |
+            
+        </td>
+    </tr>
+}
+
+</table>
+

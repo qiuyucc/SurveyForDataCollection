@@ -1,0 +1,37 @@
+﻿@if (Request.IsAuthenticated)
+{
+    if (User.IsInRole("Member"))
+    {
+
+        <ul class="nav">
+            <li><a href="@Url.Action("Index", "Dashboard")">Dashboard</a></li>
+            <li><a href="@Url.Action("Create", "Feedback")">Feedback</a></li>
+            <li><a href="@Url.Action("Index", "Reports")">Reports</a></li>
+            <li><a href="@Url.Action("Index", "Surveys")">Survey</a></li>
+            <li><a href="@Url.Action("Index_Memeber", "Rewards")">Reward</a></li>
+        </ul>
+
+    }
+    else
+    {
+
+        <ul class="nav">
+            <li><a href="@Url.Action("Index", "Feedback")">Feedback</a></li>
+            <li><a href="@Url.Action("Index", "Role")">Role</a></li>
+            <li><a href="@Url.Action("Index", "Reports")">Reports</a></li>
+            <li><a href="@Url.Action("Index", "Surveys")">Survey</a></li>
+            <li><a href="@Url.Action("Index", "Rewards")">Reward</a></li>
+            
+        </ul>
+
+    }
+}
+else
+{  
+    <ul class="nav">
+    <li><a href="@Url.Action("Index", "Home")">Home</a></li>
+    <li><a href="@Url.Action("About", "Home")">About</a></li>
+    <li><a href="@Url.Action("Contact", "Home")">Contact</a></li>
+   </ul>
+    
+}

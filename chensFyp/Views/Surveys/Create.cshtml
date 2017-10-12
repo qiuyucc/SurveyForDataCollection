@@ -1,0 +1,32 @@
+﻿@model chensFyp.Models.Survey
+
+@{
+    ViewBag.Title = "New Survey";
+}
+
+@section scripts
+{    
+
+    @*<script src="~/Scripts/vm.survey.js"></script>
+    <script src="~/Scripts/vm.department.js"></script>
+    <script src="~/Scripts/vm.question.js"></script>
+    <script src="~/Scripts/vm.surveylist.js"></script>
+    <script src="~/Scripts/vm.responselist.js"></script>*@
+
+
+    @Scripts.Render("~/bundles/cleditor")
+
+    @*<script src="~/Scripts/jquery.cleditor.js"></script>
+     <script src="~/Scripts/knockout.cleditor.js"></script>*@
+    @Scripts.Render("~/bundles/models")
+ 
+    <script>
+        $(function() {
+            ko.validation.init({ insertMessages: false });
+            ko.applyBindings(new SurveyModel());
+        });
+    </script>
+}
+
+@Html.EditorForModel(new { title = "New Survey", url = Url.Action("Create") })
+
